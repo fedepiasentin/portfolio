@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Federico Piasentin, UX Designer & Researcher</title>
+<meta name="description" content="Portfolio di Federico Piasentin, UX Designer & Researcher: e-commerce, energia e service design.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#FFFFFF;
+  --surface:#F5F5F3;
+  --text:#1C1C1E;
+  --muted:#5A5A60;
+  --line:#E3E3E0;
+  --accent:#0A6B5C;
+  --focus:#1F4FA8;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"Public Sans", "Helvetica Neue", Arial, sans-serif;
+  --measure:68ch;
+  --s1:8px; --s2:16px; --s3:24px; --s4:40px; --s5:64px; --s6:96px;
+  --pad:clamp(20px,4vw,40px);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top, 0px);
+  padding-bottom:env(safe-area-inset-bottom, 0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top, 0px) + 80px);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:1.0625rem;line-height:1.6}
+img,svg{max-width:100%;height:auto}
+a{color:var(--text);text-decoration:underline;text-decoration-color:var(--line);text-decoration-thickness:1.5px;text-underline-offset:4px;transition:text-decoration-color .15s ease,color .15s ease}
+a:hover{text-decoration-color:currentColor}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:2px}
+.skip{position:absolute;left:-9999px;top:0;background:var(--text);color:var(--bg);padding:8px 12px;z-index:30}
+.skip:focus{left:12px;top:12px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 var(--pad)}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.15;letter-spacing:-.01em;margin:0;color:var(--text)}
+h3{font-family:var(--sans);font-size:1.0625rem;font-weight:600;letter-spacing:0;line-height:1.4}
+p{margin:0 0 var(--s2)}
+.muted{color:var(--muted)}
+.tags{font-size:.95rem;color:var(--muted);margin:0 0 var(--s1)}
+
+/* ---------- Header ---------- */
+.site-header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top, 0px)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:var(--s2);min-height:64px}
+.brand{font-weight:600;text-decoration:none;font-size:1.05rem;display:inline-flex;align-items:center;min-height:44px}
+.nav{display:flex;align-items:center;gap:var(--s1)}
+.nav ul{list-style:none;margin:0;padding:0;display:flex;gap:4px}
+.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;text-decoration:none;font-weight:500;border-radius:6px}
+.nav a:hover{background:var(--surface)}
+.nav a[aria-current="page"]{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:8px}
+.lang{display:flex;border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-left:var(--s1)}
+.lang button{font:600 .875rem var(--sans);background:var(--bg);border:0;color:var(--muted);min-height:36px;min-width:44px;padding:0 10px;cursor:pointer}
+.lang button+button{border-left:1px solid var(--line)}
+.lang button[aria-current]{background:var(--text);color:var(--bg)}
+.lang button:disabled{color:#A9A9AE;cursor:not-allowed}
+@media (max-width:640px){
+  .bar{flex-wrap:wrap;padding:8px 0}
+  .nav{width:100%;justify-content:space-between}
+  .nav a{padding:0 8px}
+}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:6px;font-weight:600;text-decoration:none;border:1.5px solid var(--text)}
+.btn-primary{background:var(--text);color:var(--bg)}
+.btn-primary:hover{background:#000;color:var(--bg)}
+.btn-secondary{background:var(--bg);color:var(--text)}
+.btn-secondary:hover{background:var(--surface)}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+
+/* ---------- Home ---------- */
+.hero{padding:var(--s6) 0 var(--s5)}
+.hero h1{font-size:clamp(2.2rem,5.4vw,3.6rem);max-width:18ch;margin-bottom:var(--s3)}
+.hero p{font-size:1.2rem;color:var(--muted);max-width:56ch;margin-bottom:var(--s4)}
+.section{padding:var(--s5) 0;border-top:1px solid var(--line)}
+.section-title{font-size:clamp(1.6rem,3vw,2rem);margin-bottom:var(--s4)}
+
+.case{display:grid;grid-template-columns:1fr;gap:var(--s3);padding-bottom:var(--s5)}
+.case + .case{padding-top:var(--s5);border-top:1px solid var(--line)}
+.case h3{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2rem);font-weight:600;letter-spacing:-.01em;line-height:1.2;margin-bottom:var(--s2)}
+.case h3 a{text-decoration-color:var(--line)}
+.case h3 a:hover{text-decoration-color:currentColor}
+.case p{max-width:var(--measure)}
+.status{display:inline-block;font-size:.9rem;font-weight:500;color:var(--muted);background:var(--surface);padding:4px 10px;border-radius:999px}
+
+/* Result block (recurring module) */
+.results{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--s3);margin:var(--s3) 0}
+.results div{padding:var(--s2) 0 0;border-top:2px solid var(--accent)}
+.results strong{display:block;font-family:var(--serif);font-size:clamp(2.2rem,5vw,2.9rem);font-weight:600;line-height:1;color:var(--accent);margin-bottom:6px}
+.results span{display:block;font-size:.95rem;color:var(--muted);line-height:1.4}
+.award{font-size:.95rem;color:var(--muted);margin-top:calc(var(--s1) * -1)}
+
+.media{background:var(--surface);border-radius:8px;display:flex;align-items:center;justify-content:center;text-align:center;padding:var(--s3);color:var(--muted);font-size:.95rem}
+.r-wide{aspect-ratio:16/10}
+.r-tall{aspect-ratio:4/5}
+
+.others{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr;gap:0}
+.others li{padding:var(--s3) 0;border-top:1px solid var(--line)}
+.others li:first-child{border-top:0;padding-top:0}
+.others h3{margin-bottom:4px}
+.others p{margin:0;color:var(--muted)}
+
+.about{display:grid;grid-template-columns:1fr;gap:var(--s4)}
+.about-text p{max-width:var(--measure)}
+.creds{list-style:none;margin:0;padding:0}
+.creds li{padding:12px 0;border-top:1px solid var(--line);line-height:1.4}
+.creds li:first-child{border-top:0;padding-top:0}
+.creds span{display:block;font-size:.95rem;color:var(--muted)}
+
+/* ---------- Case study ---------- */
+.back{display:inline-flex;align-items:center;min-height:44px;margin-top:var(--s3);font-weight:500}
+.cs-head{padding:var(--s4) 0 var(--s4)}
+.cs-head h1{font-size:clamp(2rem,4.8vw,3.2rem);max-width:22ch;margin-bottom:var(--s3)}
+.cs-head .summary{font-size:1.2rem;color:var(--muted);max-width:var(--measure)}
+.facts{display:grid;grid-template-columns:1fr;gap:0;margin:var(--s4) 0 0;padding:0;border-top:1px solid var(--line)}
+.facts div{padding:var(--s2) 0;border-bottom:1px solid var(--line)}
+.facts dt{font-size:.9rem;font-weight:600;color:var(--muted);margin-bottom:2px}
+.facts dd{margin:0}
+.facts .todo{color:#9A3412}
+
+.cs{display:grid;grid-template-columns:1fr;gap:var(--s4);padding:var(--s4) 0 var(--s5)}
+.toc{display:none}
+.body{max-width:var(--measure);font-size:1.0625rem;line-height:1.7}
+.body section{margin-bottom:var(--s5)}
+.body h2{font-size:clamp(1.5rem,3vw,1.85rem);margin-bottom:var(--s3)}
+.body h3{margin:var(--s4) 0 var(--s2)}
+.body ul{padding-left:1.2em;margin:0 0 var(--s2)}
+.body li{margin:6px 0}
+
+/* Outcome block (qualitative results, recurring module) */
+.outcomes{display:grid;grid-template-columns:1fr;gap:var(--s3);margin:var(--s3) 0}
+.outcomes div{padding-top:var(--s2);border-top:2px solid var(--accent)}
+.outcomes h3{font-family:var(--serif);font-size:1.3rem;font-weight:600;margin:0 0 4px;color:var(--accent)}
+.outcomes p{margin:0;color:var(--muted);font-size:.95rem;line-height:1.45}
+.next h2 a{text-decoration-color:var(--line)}
+.next .btn{margin-top:var(--s1)}
+
+/* Insight block (recurring module) */
+.insights{display:grid;grid-template-columns:1fr;gap:var(--s2);margin:var(--s3) 0}
+.insight{background:var(--surface);border-radius:8px;padding:var(--s3)}
+.insight h3{margin:0 0 6px}
+.insight p{margin:0;color:var(--muted)}
+
+/* Method block (recurring module) */
+.methods{list-style:none;padding:0;margin:var(--s3) 0;display:grid;grid-template-columns:1fr;gap:var(--s3)}
+.methods li{margin:0}
+.methods h3{margin:0 0 4px}
+.methods p{margin:0;color:var(--muted)}
+
+/* Design decision block (recurring module) */
+.decision{margin:var(--s4) 0}
+.decision h3{margin-top:0}
+.decision figure{margin:0 0 var(--s2)}
+.callouts{list-style:none;padding:0;margin:0;counter-reset:c}
+.callouts li{counter-increment:c;display:grid;grid-template-columns:28px 1fr;gap:8px;padding:8px 0;margin:0}
+.callouts li::before{content:counter(c);font-weight:600;color:var(--accent);font-size:1rem}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2)}
+.pair figcaption{font-size:.95rem;color:var(--muted);padding-top:8px}
+
+.flow{border:1px solid var(--line);border-radius:8px;padding:var(--s2);margin:var(--s3) 0}
+.flow svg text{font-family:var(--sans)}
+.note{font-size:.95rem;color:var(--muted);margin-top:8px}
+.draft{background:#FFF7E6;border-radius:8px;padding:var(--s2);font-size:.95rem;color:#6B4A0E}
+
+.next{border-top:1px solid var(--line);padding-top:var(--s4)}
+.next h2{font-size:clamp(1.4rem,3vw,1.75rem);margin-bottom:var(--s2)}
+
+/* Split block: who did what (recurring module) */
+.split{display:grid;grid-template-columns:1fr;gap:var(--s3);margin:var(--s3) 0}
+.split h3{margin:0 0 var(--s1);padding-bottom:8px;border-bottom:1px solid var(--line)}
+.split div:last-child h3{border-bottom:2px solid var(--accent);color:var(--accent)}
+.split ul{list-style:none;padding:0;margin:0}
+.split li{padding:8px 0;margin:0;color:var(--muted);border-bottom:1px solid var(--line);line-height:1.45}
+.split div:last-child li{color:var(--text)}
+
+/* ---------- Footer ---------- */
+footer{border-top:1px solid var(--line);padding:var(--s5) 0 var(--s4);margin-top:var(--s5)}
+.contact h2{font-size:clamp(1.6rem,3vw,2rem);margin-bottom:var(--s2)}
+.contact p{max-width:52ch;color:var(--muted);margin-bottom:var(--s3)}
+.small{font-size:.9rem;color:var(--muted);margin-top:var(--s4)}
+
+[data-page][hidden]{display:none}
+
+@media (min-width:768px){
+  .facts{grid-template-columns:repeat(4,1fr);gap:var(--s3);border-top:0}
+  .facts div{border-bottom:0;border-top:1px solid var(--line)}
+  .insights{grid-template-columns:1fr 1fr}
+  .outcomes{grid-template-columns:repeat(3,1fr)}
+  .methods{grid-template-columns:1fr 1fr}
+  .split{grid-template-columns:1fr 1fr}
+  .others{grid-template-columns:1fr 1fr;column-gap:var(--s4)}
+  .others li:nth-child(2){border-top:0;padding-top:0}
+}
+@media (min-width:1024px){
+  .case{grid-template-columns:5fr 6fr;gap:var(--s4);align-items:start}
+  .about{grid-template-columns:7fr 4fr;gap:var(--s5)}
+  .cs{grid-template-columns:220px 1fr;gap:var(--s5)}
+  .toc{display:block;position:sticky;top:96px;align-self:start;font-size:.95rem}
+  .toc p{font-weight:600;margin-bottom:var(--s1)}
+  .toc ul{list-style:none;margin:0;padding:0;border-left:1px solid var(--line)}
+  .toc a{display:block;padding:6px 0 6px 14px;margin-left:-1px;border-left:2px solid transparent;text-decoration:none;color:var(--muted)}
+  .toc a:hover{color:var(--text);border-left-color:var(--line)}
+  .toc a[aria-current="true"]{color:var(--text);border-left-color:var(--accent);font-weight:500}
+}
+@media (max-width:420px){.pair{grid-template-columns:1fr}}
+@media (prefers-reduced-motion: no-preference){html{scroll-behavior:smooth}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenuto">Vai al contenuto</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="#home">Federico Piasentin</a>
+    <nav class="nav" aria-label="Principale">
+      <ul>
+        <li><a href="#lavori" data-nav="lavori">Lavori</a></li>
+        <li><a href="#chi-sono" data-nav="chi-sono">Chi sono</a></li>
+        <li><a href="#contatti" data-nav="contatti">Contatti</a></li>
+      </ul>
+      <div class="lang" role="group" aria-label="Lingua del sito">
+        <button type="button" aria-current="true">IT</button>
+        <button type="button" disabled title="Versione inglese in preparazione">EN</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="contenuto" class="wrap">
+
+<!-- ======================= HOME ======================= -->
+<div data-page="home">
+
+  <section class="hero" aria-labelledby="hero-t">
+    <h1 id="hero-t">UX Designer & Researcher per servizi digitali complessi</h1>
+    <p>Progetto flussi e-commerce e servizi nel settore energia, partendo dalla ricerca e lavorando a stretto contatto con business e sviluppo. Il mio ultimo progetto per ENGIE si è classificato secondo ai Digital Experience Awards 2026 by Contentsquare.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="#lavori">Vedi i lavori</a>
+      <a class="btn btn-secondary" href="#cv">Scarica il CV</a>
+    </div>
+  </section>
+
+  <section class="section" id="lavori" aria-labelledby="lavori-t">
+    <h2 class="section-title" id="lavori-t">Lavori selezionati</h2>
+
+    <article class="case">
+      <div>
+        <p class="tags">ENGIE, energia, service design</p>
+        <h3><a href="#engie">Da un modulo statico a un percorso guidato: l'attivazione di luce e gas</a></h3>
+        <p>Come UX Owner ho guidato il redesign del flusso con cui i clienti attivano un'offerta online: ricerca, workshop con business e tecnologia, user flow e wireframe.</p>
+        <div class="results">
+          <div><strong>+37%</strong><span>completamento su desktop</span></div>
+          <div><strong>+51%</strong><span>completamento su mobile</span></div>
+        </div>
+        <p class="award">2° posto, Best Website Optimization, Digital Experience Awards 2026 by Contentsquare</p>
+        <a class="btn btn-secondary" href="#engie" style="margin-top:var(--s2)">Leggi il case study</a>
+      </div>
+      <div class="media r-wide" role="img" aria-label="Immagine segnaposto del nuovo flusso di attivazione">Immagine da inserire: nuovo flusso, step di configurazione</div>
+    </article>
+
+    <article class="case">
+      <div>
+        <p class="tags">Haier Europe, e-commerce, CRO</p>
+        <h3><a href="#haier">Fare ricerca senza budget per la ricerca: la lista prodotti di Haier</a></h3>
+        <p>Senza test o interviste in programma, ho introdotto il framework del Baymard Institute per valutare l'e-commerce su oltre 100 parametri, ordinare i problemi per impatto e sforzo e validare i wireframe con un usability test rapido.</p>
+        <a class="btn btn-secondary" href="#haier">Leggi il case study</a>
+      </div>
+      <div class="media r-wide" role="img" aria-label="Immagine segnaposto della lista prodotti Haier">Immagine da inserire: lista prodotti prima e dopo</div>
+    </article>
+
+    <article class="case">
+      <div>
+        <p class="tags">Assicurativo, vendita digitale, prototipazione con AI</p>
+        <h3><a href="#prototipo">Dal kick-off al prototipo navigabile in pochi giorni, con Claude</a></h3>
+        <p>Per una compagnia assicurativa ho trasformato documentazione frammentaria in un prototipo navigabile del flusso di vendita, su mobile e desktop. Claude ha dato la velocità, io ho tenuto la regia di ogni scelta.</p>
+        <div class="results">
+          <div><strong>Giorni</strong><span>non settimane, dal kick-off alla versione da presentare</span></div>
+          <div><strong>6 → 4</strong><span>passi nel percorso, dopo le iterazioni</span></div>
+        </div>
+        <a class="btn btn-secondary" href="#prototipo" style="margin-top:var(--s2)">Leggi il case study</a>
+      </div>
+      <div class="media r-wide" role="img" aria-label="Immagine segnaposto del prototipo su mobile e desktop">Immagine da inserire: prototipo, versione mobile e desktop affiancate</div>
+    </article>
+  </section>
+
+  <section class="section" aria-labelledby="altri-t">
+    <h2 class="section-title" id="altri-t">Altri progetti</h2>
+    <ul class="others">
+      <li><h3>CAREL</h3><p>Redesign della piattaforma di formazione KSA, del sito istituzionale e dei siti di prodotto, con una libreria di moduli riutilizzabili. Unico UX designer del progetto.</p></li>
+      <li><h3>Haier, Candy, Hoover</h3><p>Referente UX del team CRO su tre brand: checkout, schede e liste prodotto, homepage, navigazione e catalogo.</p></li>
+      <li><h3>Banca Patrimoni Sella</h3><p>Usability testing a supporto del redesign della intranet.</p></li>
+      <li><h3>Università degli Studi di Milano</h3><p>Usability test sui siti dei dipartimenti.</p></li>
+      <li><h3>Università per Stranieri di Perugia</h3><p>Discovery workshop e interviste individuali.</p></li>
+      <li><h3>Confindustria Ceramica, Itinerari Previdenziali</h3><p>Redesign e discovery workshop su architettura e chiarezza dei contenuti.</p></li>
+    </ul>
+  </section>
+
+  <section class="section" id="chi-sono" aria-labelledby="chi-sono-t">
+    <h2 class="section-title" id="chi-sono-t">Chi sono</h2>
+    <div class="about">
+      <div class="about-text">
+        <p>Sono UX Designer & Researcher in Ariadne Group (DGS Company) dal 2023. Lavoro dove ricerca, progettazione e stakeholder si incontrano: il mio compito è ridurre la complessità delle decisioni e trasformare obiettivi di business e bisogni delle persone in flussi digitali che funzionano.</p>
+        <p>Prima del design ho passato sei anni da GameStop Italia, fino al ruolo di Assistant Store Manager. Lì ho imparato a gestire clienti, priorità e un team in un contesto ad alta intensità.</p>
+        <p>Con il mio team sto sperimentando un modo strutturato di usare Claude nella ricerca e nel design: una base di conoscenza di progetto che raccoglie requisiti, insight e trascrizioni, da cui nascono prime bozze di deliverable sempre riviste a mano. Ne racconto un esempio concreto nel <a href="#prototipo">caso del prototipo assicurativo</a>.</p>
+      </div>
+      <ul class="creds" aria-label="Certificazioni e formazione">
+        <li>E-commerce UX Specialist (Tier 2)<span>Baymard Institute, 2024</span></li>
+        <li>Master in Neuromarketing<span>Academy Neuromarketing / Neuroexplore, 2025</span></li>
+        <li>Master in User Experience Design<span>Talent Garden Innovation School, 2023</span></li>
+        <li>Laurea in Comunicazione, Innovazione, Multimedialità<span>Università degli Studi di Pavia, 2021</span></li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<!-- ======================= CASE STUDY ENGIE ======================= -->
+<div data-page="engie" hidden>
+  <a class="back" href="#lavori">Torna ai lavori</a>
+
+  <header class="cs-head">
+    <p class="tags">ENGIE, energia, service design</p>
+    <h1>Da un modulo statico a un percorso guidato: l'attivazione di luce e gas</h1>
+    <p class="summary">Il canale online per attivare un'offerta luce e gas era datato e poco usato, e lasciava a call center e negozi gran parte delle attivazioni. Come UX Owner ho guidato il redesign del flusso.</p>
+    <div class="results">
+      <div><strong>+37%</strong><span>completamento su desktop</span></div>
+      <div><strong>+51%</strong><span>completamento su mobile</span></div>
+      <div><strong>2° posto</strong><span>Best Website Optimization, Digital Experience Awards 2026 by Contentsquare</span></div>
+    </div>
+    <dl class="facts">
+      <div><dt>Ruolo</dt><dd>UX Owner & Service Designer</dd></div>
+      <div><dt>Team</dt><dd>Business, UI design, sviluppo</dd></div>
+      <div><dt>Metodi</dt><dd>Usability test, survey, benchmark, workshop, UAT</dd></div>
+      <div><dt>Periodo</dt><dd class="todo">Da confermare</dd></div>
+    </dl>
+  </header>
+
+  <div class="media r-wide" role="img" aria-label="Immagine segnaposto del nuovo flusso">Immagine da inserire: il nuovo flusso su desktop e mobile</div>
+
+  <div class="cs">
+    <nav class="toc" aria-label="Sezioni del case study">
+      <p>In questa pagina</p>
+      <ul>
+        <li><a href="#engie-contesto">Contesto</a></li>
+        <li><a href="#engie-problemi">Problemi</a></li>
+        <li><a href="#engie-ricerca">Ricerca</a></li>
+        <li><a href="#engie-workshop">Allineamento</a></li>
+        <li><a href="#engie-flussi">User flow</a></li>
+        <li><a href="#engie-design">Soluzioni</a></li>
+        <li><a href="#engie-risultati">Risultati</a></li>
+        <li><a href="#engie-ruolo">Il mio ruolo</a></li>
+      </ul>
+    </nav>
+
+    <div class="body">
+      <section id="engie-contesto">
+        <h2>Contesto</h2>
+        <p>ENGIE è uno dei principali fornitori di energia in Italia. Il flusso online per attivare un'offerta luce e gas era un modulo statico: lungo, poco chiaro sui costi, pensato per desktop. Il canale restava marginale, mentre attivazioni e dubbi finivano su call center e negozi fisici.</p>
+        <p>L'obiettivo era trasformarlo in un percorso affidabile e orientato alla conversione, capace di gestire un sistema pieno di eccezioni senza scaricarle sul cliente.</p>
+      </section>
+
+      <section id="engie-problemi">
+        <h2>Cosa non funzionava</h2>
+        <div class="insights">
+          <div class="insight"><h3>Troppi passaggi</h3><p>Informazioni ripetute e carico cognitivo alto prima ancora di scegliere l'offerta.</p></div>
+          <div class="insight"><h3>Prezzi poco trasparenti</h3><p>Non capire cosa si stava pagando minava la fiducia nel momento della decisione.</p></div>
+          <div class="insight"><h3>Non pensato per il mobile</h3><p>E difficile da riprendere per chi tornava a completare l'attivazione più tardi.</p></div>
+          <div class="insight"><h3>Casi particolari scoperti</h3><p>Cambi di offerta e clienti con più utenze non avevano un percorso dedicato e abbandonavano.</p></div>
+        </div>
+      </section>
+
+      <section id="engie-ricerca">
+        <h2>Come l'abbiamo capito</h2>
+        <p>Abbiamo combinato metodi qualitativi e quantitativi, così che ogni scelta successiva avesse una prova a supporto. Ho contribuito alla fase di ricerca e al benchmark.</p>
+        <ul class="methods">
+          <li><h3>Usability test non moderati</h3><p>Per osservare dove le persone si bloccavano nel flusso esistente.</p></li>
+          <li><h3>Survey quantitativa</h3><p>Per misurare fiducia, chiarezza e soddisfazione percepite.</p></li>
+          <li><h3>Benchmark comparativo</h3><p>Per capire come i principali concorrenti strutturano i loro flussi.</p></li>
+          <li><h3>Valutazione euristica (Baymard)</h3><p>Per individuare i problemi strutturali dell'esperienza.</p></li>
+        </ul>
+      </section>
+
+      <section id="engie-workshop">
+        <h2>Allineare business e tecnologia</h2>
+        <p>Ogni semplificazione toccava regole commerciali e vincoli tecnici, quindi servivano decisioni condivise prima di disegnare qualsiasi schermata. Con stakeholder di business, UX e tecnologia abbiamo condotto un workshop "How might we" che ha portato a tre direzioni:</p>
+        <ul>
+          <li>percorsi decisionali più chiari e meno passaggi;</li>
+          <li>prezzi e vantaggi visibili fin dall'inizio;</li>
+          <li>una gestione unica delle eccezioni per i clienti già attivi.</li>
+        </ul>
+      </section>
+
+      <section id="engie-flussi">
+        <h2>Quattro ingressi, un solo percorso</h2>
+        <p>Ho disegnato uno user flow che porta tutti i principali scenari di attivazione dentro lo stesso percorso guidato, invece di creare un flusso separato per ogni caso.</p>
+        <figure class="flow">
+          <svg viewBox="0 0 640 280" role="img" aria-labelledby="flow-t flow-d">
+            <title id="flow-t">Schema dei quattro scenari di attivazione</title>
+            <desc id="flow-d">Nuovo cliente, cambio offerta, simulatore bolletta e ingresso promozionale confluiscono nello stesso percorso a step: offerta, dati, documenti, conferma.</desc>
+            <g fill="#F5F5F3" stroke="#C9C9C5">
+              <rect x="10" y="14" width="170" height="44" rx="6"/><rect x="10" y="82" width="170" height="44" rx="6"/>
+              <rect x="10" y="150" width="170" height="44" rx="6"/><rect x="10" y="218" width="170" height="44" rx="6"/>
+            </g>
+            <path d="M180 36 C225 36 225 140 268 140 M180 104 C225 104 225 140 268 140 M180 172 C225 172 225 140 268 140 M180 240 C225 240 225 140 268 140" fill="none" stroke="#9A9A96" stroke-width="1.5"/>
+            <rect x="268" y="52" width="362" height="176" rx="8" fill="#FFFFFF" stroke="#0A6B5C" stroke-width="2"/>
+            <g font-size="14" fill="#1C1C1E">
+              <text x="22" y="41">Nuovo cliente</text><text x="22" y="109">Cambio offerta</text>
+              <text x="22" y="177">Simulatore bolletta</text><text x="22" y="245">Ingresso promozionale</text>
+              <text x="286" y="82" font-weight="600">Percorso guidato a step</text>
+            </g>
+            <g fill="#F5F5F3" stroke="#C9C9C5">
+              <rect x="286" y="100" width="76" height="40" rx="6"/><rect x="370" y="100" width="76" height="40" rx="6"/>
+              <rect x="454" y="100" width="76" height="40" rx="6"/><rect x="538" y="100" width="76" height="40" rx="6"/>
+            </g>
+            <g font-size="13" fill="#1C1C1E">
+              <text x="296" y="125">Offerta</text><text x="380" y="125">Dati</text><text x="462" y="125">Documenti</text><text x="546" y="125">Conferma</text>
+            </g>
+            <g font-size="13" fill="#5A5A60">
+              <text x="286" y="176">Sempre visibili: avanzamento,</text>
+              <text x="286" y="196">riepilogo costi, pausa e ripresa</text>
+            </g>
+          </svg>
+          <figcaption class="note">Schema semplificato, da sostituire con lo user flow originale se pubblicabile.</figcaption>
+        </figure>
+      </section>
+
+      <section id="engie-design">
+        <h2>Le soluzioni</h2>
+        <p>Dai flussi approvati ho realizzato wireframe a bassa fedeltà per definire struttura e logica. Una volta validati, il team UI ha sviluppato la grafica finale e un prototipo HTML cliccabile. Tre principi guida: struttura modulare, layout mobile-first con testi semplici, microcopy trasparente sui costi.</p>
+
+        <div class="decision">
+          <h3>Configurazione dell'offerta</h3>
+          <figure><div class="media r-wide">Immagine da inserire: step di configurazione</div></figure>
+          <ol class="callouts">
+            <li>L'offerta che si sta attivando resta sempre in vista.</li>
+            <li>L'avanzamento dice in ogni momento quanto manca alla fine.</li>
+            <li>Il riepilogo mostra tutti i costi, con tooltip sulle voci meno chiare.</li>
+          </ol>
+        </div>
+
+        <div class="decision">
+          <h3>Prima della sottoscrizione</h3>
+          <figure><div class="media r-wide">Immagine da inserire: panoramica pre-sottoscrizione</div></figure>
+          <ol class="callouts">
+            <li>Ogni fase dichiara quanto tempo richiede.</li>
+            <li>Le scelte restano modificabili anche a configurazione conclusa.</li>
+            <li>La panoramica elenca durata complessiva e documenti necessari.</li>
+          </ol>
+        </div>
+
+        <div class="decision">
+          <h3>Meno campi da compilare</h3>
+          <figure><div class="media r-wide">Immagine da inserire: caricamento della bolletta</div></figure>
+          <ol class="callouts">
+            <li>Caricando la bolletta, dati e stima dei consumi si compilano da soli.</li>
+            <li>Durante la sottoscrizione il riepilogo si chiude per lasciare spazio allo step in corso.</li>
+            <li>La sottoscrizione si può sospendere e riprendere più tardi.</li>
+          </ol>
+        </div>
+
+        <div class="decision">
+          <h3>Su mobile</h3>
+          <figure class="pair">
+            <div class="media r-tall">Da inserire: step su mobile</div>
+            <div class="media r-tall">Da inserire: riepilogo in overlay</div>
+          </figure>
+          <ol class="callouts">
+            <li>L'avanzamento diventa una fisarmonica che non ruba spazio.</li>
+            <li>La chat si sposta in alto a destra, lontano dal pulsante per proseguire.</li>
+            <li>Il riepilogo dell'offerta si apre da un link in alto, in un overlay.</li>
+          </ol>
+        </div>
+
+        <div class="decision">
+          <h3>Prima e dopo: inserimento dei dati personali</h3>
+          <div class="pair">
+            <figure><div class="media r-tall">Prima</div><figcaption>Prima</figcaption></figure>
+            <figure><div class="media r-tall">Dopo</div><figcaption>Dopo</figcaption></figure>
+          </div>
+        </div>
+      </section>
+
+      <section id="engie-risultati">
+        <h2>Validazione e risultati</h2>
+        <p>Il cliente ha scelto di non fare test con utenti prima del lancio. Per non arrivare al rilascio senza verifiche, ho condotto sessioni di User Acceptance Test con stakeholder interni e sviluppatori, controllando allineamento ai requisiti e usabilità di ogni release.</p>
+        <div class="results">
+          <div><strong>+37%</strong><span>completamento su desktop</span></div>
+          <div><strong>+51%</strong><span>completamento su mobile</span></div>
+        </div>
+        <p>Il miglioramento più forte arriva su mobile, dove il vecchio flusso era più debole. Il redesign si è classificato secondo nella categoria Best Website Optimization ai Digital Experience Awards 2026 by Contentsquare (Milano, giugno 2026).</p>
+      </section>
+
+      <section id="engie-ruolo">
+        <h2>Il mio ruolo</h2>
+        <ul>
+          <li>Ho definito roadmap e priorità insieme agli stakeholder.</li>
+          <li>Ho contribuito alla ricerca e al benchmark.</li>
+          <li>Ho guidato la progettazione UX: user flow, wireframe, logiche di interazione.</li>
+          <li>Ho fatto da ponte tra team UI e sviluppo durante l'implementazione.</li>
+          <li>Ho condotto gli UAT prima del rilascio.</li>
+        </ul>
+        <p class="draft">Bozza: qui va una tua riflessione finale su cosa ti ha insegnato il progetto.</p>
+      </section>
+
+      <div class="next">
+        <p class="tags">Prossimo case study</p>
+        <h2><a href="#haier">Fare ricerca senza budget per la ricerca: la lista prodotti di Haier</a></h2>
+        <a class="btn btn-secondary" href="#haier">Leggi il case study</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= CASE STUDY HAIER ======================= -->
+<div data-page="haier" hidden>
+  <a class="back" href="#lavori">Torna ai lavori</a>
+
+  <header class="cs-head">
+    <p class="tags">Haier Europe, e-commerce, CRO</p>
+    <h1>Fare ricerca senza budget per la ricerca: la lista prodotti di Haier</h1>
+    <p class="summary">Il team e-commerce di Haier Europe doveva migliorare conversione ed esperienza su più siti europei, senza tempo né budget per test di usabilità o interviste. Come UX Owner del team CRO ho introdotto il framework del Baymard Institute per decidere sulla base di evidenze, e l'ho applicato al redesign della pagina lista prodotti.</p>
+    <div class="outcomes">
+      <div><h3>Roadmap condivisa</h3><p>Priorità di redesign basate su impatto e sforzo, adottate da tutti i reparti.</p></div>
+      <div><h3>Decisioni meno soggettive</h3><p>Ogni scelta di design riconducibile a una linea guida.</p></div>
+      <div><h3>Più maturità UX</h3><p>La ricerca è diventata parte stabile del processo del cliente.</p></div>
+    </div>
+    <dl class="facts">
+      <div><dt>Ruolo</dt><dd>UX Owner, team CRO</dd></div>
+      <div><dt>Team</dt><dd>UX, SEO, UI, Analytics, Performance Marketing</dd></div>
+      <div><dt>Metodi</dt><dd>Valutazione Baymard, priority map, wireframe, usability test rapido</dd></div>
+      <div><dt>Periodo</dt><dd class="todo">Da confermare</dd></div>
+    </dl>
+  </header>
+
+  <div class="media r-wide" role="img" aria-label="Immagine segnaposto della nuova lista prodotti">Immagine da inserire: la nuova lista prodotti su desktop e mobile</div>
+
+  <div class="cs">
+    <nav class="toc" aria-label="Sezioni del case study">
+      <p>In questa pagina</p>
+      <ul>
+        <li><a href="#haier-contesto">Contesto</a></li>
+        <li><a href="#haier-approccio">Approccio</a></li>
+        <li><a href="#haier-problemi">Problemi</a></li>
+        <li><a href="#haier-design">Soluzioni</a></li>
+        <li><a href="#haier-test">Test</a></li>
+        <li><a href="#haier-esiti">Esiti</a></li>
+        <li><a href="#haier-ruolo">Il mio ruolo</a></li>
+      </ul>
+    </nav>
+
+    <div class="body">
+      <section id="haier-contesto">
+        <h2>Contesto</h2>
+        <p>Haier Europe gestisce un ecosistema e-commerce su più paesi europei. Lavoravo nella task force di Conversion Rate Optimization, insieme a SEO, UI, Analytics e Performance Marketing, con il compito di impostare il metodo UX e garantire la qualità del design lungo tutto il funnel.</p>
+        <p>Il limite era chiaro fin dall'inizio: nessun test di usabilità, nessuna intervista, nessuno studio qualitativo in programma, per mancanza di tempo e budget. Senza ricerca, il rischio era che le decisioni di design si riducessero a opinioni.</p>
+        <p>La domanda da cui siamo partiti: come mantenere un processo basato su evidenze con poco tempo, poco budget e poca abitudine alla ricerca?</p>
+      </section>
+
+      <section id="haier-approccio">
+        <h2>Approccio: il framework Baymard</h2>
+        <p>Il Baymard Institute mette a disposizione oltre 700 linee guida UX ricavate da anni di test di usabilità su grandi e-commerce. Ho proposto di usare la sua piattaforma per confrontare l'esperienza di Haier con gli standard di settore e sostituire le opinioni con dati.</p>
+        <ul class="methods">
+          <li><h3>Allineamento del team</h3><p>Ho presentato il framework al team come strumento di valutazione basato su evidenze, non come un audit visivo.</p></li>
+          <li><h3>Valutazione e punteggio</h3><p>Oltre 100 parametri su navigazione, ricerca, filtri, schede prodotto, checkout, fiducia e mobile, ognuno classificato per gravità, impatto ed effort di sviluppo.</p></li>
+          <li><h3>Mappa delle priorità</h3><p>Il risultato della valutazione: i problemi critici visibili a colpo d'occhio, ordinati per importanza.</p></li>
+          <li><h3>Roadmap per impatto e sforzo</h3><p>Interventi rapidi (layout dei filtri, microcopy), azioni a medio termine (redesign delle card prodotto) e redesign strategici (lista prodotti, checkout).</p></li>
+        </ul>
+      </section>
+
+      <section id="haier-problemi">
+        <h2>Cosa non funzionava nella lista prodotti</h2>
+        <p>Tra le aree analizzate, la pagina lista prodotti era l'esempio più chiaro di come le linee guida potessero tradursi in miglioramenti concreti.</p>
+        <div class="insights">
+          <div class="insight"><h3>Card che non aiutavano a confrontare</h3><p>La griglia dava poco spazio alle specifiche tecniche, che per un elettrodomestico contano più delle immagini.</p></div>
+          <div class="insight"><h3>Filtri poco chiari</h3><p>Pulsanti al posto delle checkbox e nessun conteggio dei risultati per ogni opzione.</p></div>
+          <div class="insight"><h3>Filtri attivi invisibili</h3><p>Non si capiva quali filtri fossero applicati, e il carico cognitivo cresceva durante la navigazione.</p></div>
+          <div class="insight"><h3>Card troppo lunghe su mobile</h3><p>Troppi dettagli poco rilevanti: si vedeva un solo prodotto alla volta.</p></div>
+        </div>
+      </section>
+
+      <section id="haier-design">
+        <h2>Le soluzioni</h2>
+        <p>Ho tradotto i problemi prioritari in wireframe ad alta fedeltà, con un obiettivo preciso: ogni decisione doveva essere riconducibile a una linea guida e testabile prima delle fasi di UI e sviluppo.</p>
+
+        <div class="decision">
+          <h3>Card prodotto in formato lista</h3>
+          <figure><div class="media r-wide">Immagine da inserire: card prodotto, prima e dopo</div></figure>
+          <ol class="callouts">
+            <li>Il layout a lista lascia più spazio alle specifiche tecniche, come raccomandato per i prodotti scelti in base alle caratteristiche.</li>
+            <li>Le caratteristiche dei prodotti si confrontano scorrendo meno.</li>
+          </ol>
+        </div>
+
+        <div class="decision">
+          <h3>Filtri più chiari e prevedibili</h3>
+          <figure><div class="media r-wide">Immagine da inserire: pannello filtri</div></figure>
+          <ol class="callouts">
+            <li>Checkbox al posto dei pulsanti.</li>
+            <li>Il numero di risultati accanto a ogni opzione.</li>
+            <li>I filtri attivi sempre in evidenza.</li>
+          </ol>
+        </div>
+
+        <div class="decision">
+          <h3>Filtri principali in primo piano</h3>
+          <figure><div class="media r-wide">Immagine da inserire: barra delle sottocategorie</div></figure>
+          <ol class="callouts">
+            <li>Una barra sopra la lista mostra subito le sottocategorie principali, ad esempio per i frigoriferi multidoor, americano e due porte.</li>
+            <li>Secondo Baymard, il 61% degli e-commerce non mette in evidenza i filtri chiave: qui servono a restringere liste lunghe con meno sforzo.</li>
+          </ol>
+        </div>
+
+        <div class="decision">
+          <h3>Su mobile</h3>
+          <figure class="pair">
+            <div class="media r-tall">Da inserire: lista su mobile, prima</div>
+            <div class="media r-tall">Da inserire: lista su mobile, dopo</div>
+          </figure>
+          <ol class="callouts">
+            <li>Card più corte, con una gerarchia più chiara.</li>
+            <li>I filtri applicati restano visibili durante la navigazione.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="haier-test">
+        <h2>Un test rapido, nel momento giusto</h2>
+        <p>Con un budget limitato, abbiamo scelto di investirlo in un usability test rapido sui wireframe, invece che dopo la UI. Così abbiamo validato i concetti prima di spendere risorse in design visivo e sviluppo.</p>
+        <p>Il test, da remoto, si concentrava su tre aspetti: la leggibilità del nuovo layout a lista, la reperibilità di filtri e conteggi, la comprensione della gerarchia delle informazioni di prodotto.</p>
+        <div class="insights">
+          <div class="insight"><h3>Lista promossa</h3><p>I partecipanti hanno trovato più facile confrontare le caratteristiche senza scorrere troppo.</p></div>
+          <div class="insight"><h3>Filtri promossi</h3><p>La nuova struttura è stata descritta come più chiara e più veloce da usare.</p></div>
+          <div class="insight"><h3>Un problema inatteso</h3><p>Le descrizioni prodotto erano troppo tecniche, soprattutto su mobile. Il layout aiutava a confrontare, ma il linguaggio frenava la decisione.</p></div>
+        </div>
+        <p>Abbiamo quindi rivisto i testi di prodotto: tono più semplice, specifiche più rilevanti in evidenza, attenzione spostata sui benefici e sugli elementi distintivi.</p>
+      </section>
+
+      <section id="haier-prima-dopo">
+        <h2>Prima e dopo</h2>
+        <div class="pair">
+          <figure><div class="media r-tall">Prima</div><figcaption>Prima</figcaption></figure>
+          <figure><div class="media r-tall">Dopo</div><figcaption>Dopo</figcaption></figure>
+        </div>
+      </section>
+
+      <section id="haier-esiti">
+        <h2>Esiti</h2>
+        <ul>
+          <li>Una roadmap UX basata sui dati, condivisa da tutti i reparti, che guida le priorità di redesign.</li>
+          <li>Discussioni di design meno soggettive, grazie a un punteggio basato su evidenze.</li>
+          <li>Miglioramenti concreti sulla lista prodotti e in altre sezioni dell'e-commerce.</li>
+          <li>Più maturità UX nell'organizzazione del cliente: la ricerca è diventata una costante, non un'eccezione.</li>
+        </ul>
+      </section>
+
+      <section id="haier-ruolo">
+        <h2>Il mio ruolo</h2>
+        <ul>
+          <li>Ho impostato il metodo UX del team CRO.</li>
+          <li>Ho proposto il framework Baymard e l'ho presentato al team.</li>
+          <li>Ho tradotto le priorità emerse in wireframe ad alta fedeltà.</li>
+          <li>Ho preparato i concetti validati con l'usability test rapido.</li>
+        </ul>
+        <p class="draft">Bozza: qui va una tua riflessione finale su cosa ti ha insegnato il progetto.</p>
+      </section>
+
+      <div class="next">
+        <p class="tags">Prossimo case study</p>
+        <h2><a href="#prototipo">Dal kick-off al prototipo navigabile in pochi giorni, con Claude</a></h2>
+        <a class="btn btn-secondary" href="#prototipo">Leggi il case study</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= CASE STUDY PROTOTIPO ======================= -->
+<div data-page="prototipo" hidden>
+  <a class="back" href="#lavori">Torna ai lavori</a>
+
+  <header class="cs-head">
+    <p class="tags">Assicurativo, vendita digitale, prototipazione con AI</p>
+    <h1>Dal kick-off al prototipo navigabile in pochi giorni, con Claude</h1>
+    <p class="summary">Una compagnia assicurativa doveva presentare ai propri stakeholder un nuovo portale di vendita digitale, con un flusso definito in emergenza e una scadenza ravvicinata. Con Claude ho trasformato tre fonti frammentarie in una base di lavoro strutturata e poi in un prototipo navigabile, iterato più volte in pochi giorni. Con un approccio tradizionale in Figma sarebbero servite settimane. La velocità l'ha data lo strumento; la qualità è venuta dalla regia: ogni scelta di semplificazione, accorpamento e gerarchia l'ho decisa, motivata e verificata io.</p>
+    <div class="outcomes">
+      <div><h3>Giorni, non settimane</h3><p>Dal kick-off alla versione da presentare, con più cicli di revisione.</p></div>
+      <div><h3>Da 19 schermate a 4 passi</h3><p>Un percorso più corto e leggibile, deciso un'iterazione alla volta.</p></div>
+      <div><h3>Incertezza dichiarata</h3><p>Il prototipo arriva con la lista di cosa è vincolo e cosa è ipotesi.</p></div>
+    </div>
+    <dl class="facts">
+      <div><dt>Ruolo</dt><dd>UX Designer, regia del prototipo</dd></div>
+      <div><dt>Team</dt><dd>PMO, Head of UX, referenti business e IT del cliente</dd></div>
+      <div><dt>Strumenti</dt><dd>Claude, Claude Design</dd></div>
+      <div><dt>Periodo</dt><dd>Settembre 2026</dd></div>
+    </dl>
+  </header>
+
+  <div class="media r-wide" role="img" aria-label="Immagine segnaposto del prototipo">Immagine da inserire: il prototipo su mobile (390 px) e desktop (1440 px)</div>
+
+  <div class="cs">
+    <nav class="toc" aria-label="Sezioni del case study">
+      <p>In questa pagina</p>
+      <ul>
+        <li><a href="#prototipo-contesto">Contesto</a></li>
+        <li><a href="#prototipo-vincoli">Vincoli</a></li>
+        <li><a href="#prototipo-metodo">Metodo</a></li>
+        <li><a href="#prototipo-regia">La regia UX</a></li>
+        <li><a href="#prototipo-provenienza">Provenienza</a></li>
+        <li><a href="#prototipo-ruoli">Chi ha fatto cosa</a></li>
+        <li><a href="#prototipo-velocita">Perché è stato veloce</a></li>
+        <li><a href="#prototipo-limiti">Limiti</a></li>
+        <li><a href="#prototipo-ruolo">Il mio ruolo</a></li>
+      </ul>
+    </nav>
+
+    <div class="body">
+      <section id="prototipo-contesto">
+        <h2>Contesto</h2>
+        <p>Una compagnia assicurativa danni voleva vendere online polizze di RC professionale sanitaria agli iscritti di associazioni professionali, passando da intermediari minori senza un'infrastruttura digitale propria. Fino a quel momento l'adesione era quasi del tutto manuale: le associazioni inviavano gli elenchi degli iscritti e cliente finale e compagnia non entravano mai in contatto. Per il cliente era un vero cambio di paradigma.</p>
+        <p>Esisteva già una piattaforma, sviluppata da un fornitore forte sul sistema legacy ma debole su normativa, tracciamenti ed esperienza utente. Andava superata in fretta: il flusso di vendita era stato costruito in pochi giorni e c'era una presentazione agli stakeholder da preparare.</p>
+      </section>
+
+      <section id="prototipo-vincoli">
+        <h2>Perché non Figma</h2>
+        <p>I vincoli del progetto hanno deciso lo strumento prima ancora che si cominciasse a disegnare.</p>
+        <div class="insights">
+          <div class="insight"><h3>Tempo molto compresso</h3><p>La settimana dopo il kick-off era l'unica utile per produrre il prototipo.</p></div>
+          <div class="insight"><h3>Resa su mobile</h3><p>Figma è stato scartato già in riunione proprio per la resa su smartphone: serviva un prototipo HTML navigabile, a bassa o media fedeltà.</p></div>
+          <div class="insight"><h3>Dominio complesso</h3><p>Privacy e consensi, adeguatezza, firma elettronica, pagamenti, accessibilità: ogni schermata doveva reggere le obiezioni di stakeholder esperti.</p></div>
+          <div class="insight"><h3>Fonti imperfette</h3><p>Nessun requisito formalizzato, nessun wireframe. Solo una slide di flusso con alcune incongruenze, una trascrizione automatica di qualità medio-bassa e uno screenshot del configuratore esistente.</p></div>
+        </div>
+      </section>
+
+      <section id="prototipo-metodo">
+        <h2>Il metodo in tre fasi</h2>
+        <figure class="flow">
+          <svg viewBox="0 0 640 210" role="img" aria-labelledby="pflow-t pflow-d">
+            <title id="pflow-t">Dalle fonti grezze al prototipo finale</title>
+            <desc id="pflow-d">Quattro momenti in sequenza: fonti grezze, base condivisa con il flusso in 18 passi e i punti da verificare, prima versione del prototipo con 19 schermate su mobile e desktop, iterazioni guidate fino a un percorso in 4 passi.</desc>
+            <g fill="#F5F5F3" stroke="#C9C9C5">
+              <rect x="2" y="20" width="146" height="130" rx="6"/><rect x="166" y="20" width="146" height="130" rx="6"/><rect x="330" y="20" width="146" height="130" rx="6"/>
+            </g>
+            <rect x="494" y="20" width="144" height="130" rx="6" fill="#FFFFFF" stroke="#0A6B5C" stroke-width="2"/>
+            <g stroke="#9A9A96" stroke-width="1.5" fill="none">
+              <path d="M148 85 H166 M312 85 H330 M476 85 H494"/>
+            </g>
+            <g font-size="14" font-weight="600" fill="#1C1C1E">
+              <text x="16" y="50">Fonti grezze</text><text x="180" y="50">Base condivisa</text><text x="344" y="50">Prototipo v1</text><text x="508" y="50" fill="#0A6B5C">Iterazioni UX</text>
+            </g>
+            <g font-size="12.5" fill="#1C1C1E">
+              <text x="16" y="78">slide di flusso</text><text x="16" y="98">trascrizione</text><text x="16" y="118">screenshot</text>
+              <text x="180" y="78">18 passi, 4 fasi</text><text x="180" y="98">discrepanze</text><text x="180" y="118">da verificare</text>
+              <text x="344" y="78">19 schermate</text><text x="344" y="98">mobile e desktop</text>
+              <text x="508" y="78">4 passi</text><text x="508" y="98">punti aperti</text><text x="508" y="118">dichiarati</text>
+            </g>
+            <g font-size="12.5" fill="#5A5A60">
+              <text x="16" y="182">Punto di partenza</text><text x="180" y="182">Poche ore</text><text x="344" y="182">Una sessione</text><text x="508" y="182">Pochi giorni</text>
+            </g>
+          </svg>
+        </figure>
+
+        <h3>1. Ordinare prima di disegnare</h3>
+        <p>Prima di qualsiasi schermata ho usato Claude per mettere ordine. Dalla trascrizione è nata una nota di kick-off strutturata per temi: flusso, area riservata, architettura, white label, compliance, prossimi passi. La regola che ho dato era netta: riportare solo ciò che si poteva ricostruire con ragionevole sicurezza e raccogliere tutto il resto in una sezione "da verificare".</p>
+        <p>Incrociando nota e slide, Claude ha ricostruito il flusso di vendita in 18 passi e 4 fasi, con una tabella "chi fa cosa" tra piattaforma e sistema legacy e una lista di discrepanze tra le fonti: l'ordine di pagamento, emissione e firma, il momento dell'invio dei documenti precontrattuali, un ramo di errore della firma etichettato come errore di pagamento.</p>
+        <p>Un lavoro che di solito richiede giorni di riascolto e riscrittura si è chiuso in poche ore. Soprattutto, ne è uscita una mappa esplicita dell'incertezza: sapevo fin dall'inizio quali scelte del prototipo sarebbero state mie e quali erano vincoli del cliente.</p>
+
+        <h3>2. Partire larghi</h3>
+        <p>Ho creato il prototipo come canvas di Claude Design, così da modificarlo direttamente nella conversazione. Prima di generarlo ho fissato due confini: seguire l'ordine della slide per firma, pagamento ed emissione, tenendo la discrepanza tra i punti aperti, e limitarmi al flusso di vendita, escludendo area riservata e back office.</p>
+        <p>La prima versione contava 19 schermate, in parallelo su mobile e desktop. Era volutamente un punto di partenza, non un risultato.</p>
+
+        <h3>3. Tagliare, accorpare, riordinare</h3>
+        <p>Da lì il lavoro è diventato un dialogo serrato: osservavo il prototipo, decidevo cosa cambiare e perché, e Claude applicava la modifica su entrambe le versioni. In pochi cicli il flusso è passato da 19 schermate e 6 passi di avanzamento a un percorso in 4 passi: I tuoi dati, Preventivo, Proposta e firma, Pagamento.</p>
+      </section>
+
+      <section id="prototipo-regia">
+        <h2>La regia UX: dove si fa la differenza</h2>
+        <p>Claude genera schermate plausibili molto in fretta. Plausibile però non vuol dire giusto: il valore del prototipo sta nelle decisioni prese a ogni giro. Queste sono le principali.</p>
+
+        <div class="decision">
+          <h3>Un funnel senza vie d'uscita e con meno attrito</h3>
+          <figure><div class="media r-wide">Immagine da inserire: login e dati precompilati</div></figure>
+          <ol class="callouts">
+            <li>Ho tolto dall'header i link ad assistenza, FAQ e documenti informativi: ogni uscita dal flusso è un potenziale cliente perso.</li>
+            <li>Ho ridotto i consensi da un paragrafo con due link, due caselle e una doppia scelta marketing a tre sole caselle, senza perdere quelli necessari.</li>
+            <li>Ho fatto lavorare di più il login: con le credenziali dell'associazione i dati arrivano precompilati e quelli certificati sono bloccati. La verifica di appartenenza diventa implicita e la schermata di eleggibilità sparisce.</li>
+          </ol>
+        </div>
+
+        <div class="decision">
+          <h3>Una sola schermata per decidere</h3>
+          <figure><div class="media r-wide">Immagine da inserire: Riepilogo e accettazione</div></figure>
+          <ol class="callouts">
+            <li>Ho accorpato conferma, proposta e documenti precontrattuali in "Riepilogo e accettazione": il cliente vede tutto ciò che accetta nel punto in cui lo accetta.</li>
+            <li>Ho spostato modalità di pagamento e decorrenza in una sezione a sé, perché sono attributi del contratto e non della garanzia, con un avviso dedicato se la decorrenza è retrodatata.</li>
+          </ol>
+        </div>
+
+        <div class="decision">
+          <h3>Una quotazione che rispecchia il prodotto vero</h3>
+          <figure><div class="media r-wide">Immagine da inserire: quotazione a pacchetti</div></figure>
+          <ol class="callouts">
+            <li>Garanzia base non rimovibile, massimali e retroattività a scelta, garanzie facoltative da aggiungere: la struttura nasce dallo screenshot del configuratore reale, non da un'ipotesi generica.</li>
+            <li>Email e cartaceo sono canali indipendenti, con l'email preselezionata: il cliente può volere i documenti su entrambi.</li>
+          </ol>
+        </div>
+
+        <div class="decision">
+          <h3>Accessibilità e gerarchia visiva</h3>
+          <figure class="pair">
+            <div class="media r-tall">Da inserire: aiuto sempre visibile</div>
+            <div class="media r-tall">Da inserire: stato selezionato e CTA</div>
+          </figure>
+          <ol class="callouts">
+            <li>Accanto al campo "Attività svolta" c'è un testo di supporto sempre visibile, al posto di un tooltip in hover che era stato segnalato come critico per l'accessibilità.</li>
+            <li>Le opzioni selezionate hanno bordo e sfondo leggero, distinte dai pulsanti principali: una scelta non deve sembrare un'azione.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="prototipo-provenienza">
+        <h2>La provenienza come disciplina</h2>
+        <p>La parte meno visibile della regia, ma decisiva. Più volte ho chiesto a Claude di separare ciò che veniva dalle fonti da ciò che era dedotto o inventato. Alcuni esempi:</p>
+        <div class="insights">
+          <div class="insight"><h3>Login</h3><p>Nel kick-off era un punto aperto: rappresentare solo l'accesso con le credenziali dell'associazione è stata una scelta di progetto.</p></div>
+          <div class="insight"><h3>Garanzie facoltative</h3><p>Venivano dal configuratore, mentre il kick-off parlava di un solo prodotto per istanza.</p></div>
+          <div class="insight"><h3>Rate e decorrenza</h3><p>Non erano nelle fonti e hanno aperto un possibile tema di compliance.</p></div>
+          <div class="insight"><h3>Testi e attività</h3><p>Elenco delle attività professionali e descrizioni delle garanzie erano ipotesi da validare.</p></div>
+        </div>
+        <p>Così il prototipo arriva al cliente con una lista chiara di punti da verificare, non con affermazioni che sembrano certe e non lo sono. Davanti a stakeholder esperti è ciò che separa una proposta credibile da una bella demo.</p>
+      </section>
+
+      <section id="prototipo-ruoli">
+        <h2>Chi ha fatto cosa</h2>
+        <div class="split">
+          <div>
+            <h3>Claude</h3>
+            <ul>
+              <li>Ha riordinato una trascrizione rumorosa in una nota strutturata.</li>
+              <li>Ha ricostruito il flusso e segnalato le incongruenze tra le fonti.</li>
+              <li>Ha generato 19 schermate su due breakpoint in una sessione.</li>
+              <li>Ha applicato ogni modifica in parallelo su mobile e desktop.</li>
+              <li>Ha popolato il prototipo con dati e testi realistici.</li>
+              <li>Ha tradotto uno screenshot in una quotazione funzionante.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Io</h3>
+            <ul>
+              <li>Ho stabilito cosa contava e cosa restava incerto.</li>
+              <li>Ho deciso come risolvere le incongruenze, o se lasciarle aperte.</li>
+              <li>Ho definito perimetro, priorità e percorso da rappresentare.</li>
+              <li>Ho tagliato, accorpato e riordinato schermate e contenuti.</li>
+              <li>Ho preteso trasparenza su cosa fosse inventato.</li>
+              <li>Ho scelto gerarchie, stati visivi e trattamento dell'aiuto alla compilazione.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="prototipo-velocita">
+        <h2>Perché è stato così veloce</h2>
+        <ul class="methods">
+          <li><h3>Nessuna costruzione manuale</h3><p>Niente libreria di componenti, varianti e collegamenti da creare prima di vedere il primo flusso.</p></li>
+          <li><h3>Due breakpoint al prezzo di uno</h3><p>Ogni modifica descritta a parole veniva applicata insieme su mobile e desktop.</p></li>
+          <li><h3>Contenuti realistici da subito</h3><p>Dati, massimali, testi delle garanzie e messaggi di errore coerenti, senza lorem ipsum da sostituire.</p></li>
+          <li><h3>Navigabile su smartphone</h3><p>HTML reale, senza il problema di resa per cui Figma era stato scartato.</p></li>
+          <li><h3>Documentazione e prototipo insieme</h3><p>I vincoli emersi nell'analisi erano a portata di mano durante la progettazione.</p></li>
+          <li><h3>Iterazioni in minuti</h3><p>Accorpare tre schermate richiedeva una richiesta ben formulata, non mezza giornata di lavoro.</p></li>
+        </ul>
+        <p>Il tempo risparmiato non l'ho tolto al progetto: l'ho reinvestito in più cicli di revisione e in più ragionamento sulle scelte.</p>
+      </section>
+
+      <section id="prototipo-limiti">
+        <h2>Limiti e attenzioni</h2>
+        <ul>
+          <li><strong>La velocità amplifica gli errori quanto le idee.</strong> Una scelta sbagliata si propaga in tutte le schermate in pochi secondi: serve un occhio critico a ogni giro.</li>
+          <li><strong>Il plausibile non è il vero.</strong> Claude riempie i vuoti con contenuti credibili; senza una richiesta esplicita di trasparenza, ipotesi e fatti si confondono.</li>
+          <li><strong>Semplificare può toccare vincoli reali.</strong> Togliere la schermata di adeguatezza ha alleggerito il flusso, ma il kick-off la prevedeva: l'ho segnalata come da confermare, non come acquisita.</li>
+          <li><strong>Non sostituisce le verifiche specialistiche.</strong> Compliance, privacy, accessibilità e normativa vanno validate con il cliente e con i team legali.</li>
+          <li><strong>È un prototipo, non un progetto esecutivo.</strong> Serve a decidere e ad allineare; lo sviluppo richiede il consueto lavoro di specifica.</li>
+        </ul>
+      </section>
+
+      <section id="prototipo-ruolo">
+        <h2>Il mio ruolo</h2>
+        <ul>
+          <li>Ho fissato perimetro e priorità del prototipo prima di generarlo.</li>
+          <li>Ho deciso come trattare le incongruenze tra le fonti.</li>
+          <li>Ho guidato ogni iterazione, dalla struttura del flusso alla gerarchia visiva.</li>
+          <li>Ho mantenuto la lista dei punti da verificare da portare al cliente.</li>
+        </ul>
+        <h3>Cosa mi porto a casa</h3>
+        <ul class="methods">
+          <li><h3>Ordinare prima di disegnare</h3><p>Una base strutturata, con l'incertezza dichiarata, rende ogni iterazione più veloce e più solida.</p></li>
+          <li><h3>Partire larghi e tagliare</h3><p>Una prima versione completa e poi asciugata funziona meglio del flusso perfetto al primo colpo.</p></li>
+          <li><h3>Chiedere sempre da dove viene un contenuto</h3><p>È la domanda che tiene il prototipo onesto e pronto alle obiezioni.</p></li>
+          <li><h3>Non disegno meno: decido di più</h3><p>Lo strumento sposta il lavoro dall'esecuzione alla regia, ed è lì che si gioca la qualità.</p></li>
+        </ul>
+      </section>
+
+      <div class="next">
+        <p class="tags">Prossimo case study</p>
+        <h2><a href="#engie">Da un modulo statico a un percorso guidato: l'attivazione di luce e gas</a></h2>
+        <a class="btn btn-secondary" href="#engie">Leggi il case study</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer id="contatti">
+  <div class="wrap contact">
+    <h2>Parliamone</h2>
+    <p>Sto valutando nuove opportunità come UX Designer, UX Researcher o Service Designer.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="mailto:piasentin.federico@gmail.com">Scrivimi una email</a>
+      <a class="btn btn-secondary" href="https://www.linkedin.com/in/federico-piasentin/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-secondary" href="#cv" id="cv">Scarica il CV</a>
+    </div>
+    <p class="small">piasentin.federico@gmail.com</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var pages=document.querySelectorAll('[data-page]');
+  var tocLinks=document.querySelectorAll('.toc a');
+  function route(){
+    var h=location.hash.replace('#','');
+    var page='home';
+    ['engie','haier','prototipo'].forEach(function(k){if(h===k||h.indexOf(k+'-')===0)page=k;});
+    var changed=false;
+    pages.forEach(function(p){var show=p.getAttribute('data-page')===page;if(show===p.hidden)changed=true;p.hidden=!show;});
+    document.querySelectorAll('[data-nav]').forEach(function(a){a.removeAttribute('aria-current');});
+    var navKey=page!=='home'?'lavori':h;
+    var cur=document.querySelector('[data-nav="'+navKey+'"]'); if(cur) cur.setAttribute('aria-current','page');
+    var titles={engie:'ENGIE, attivazione luce e gas | Federico Piasentin',haier:'Haier, lista prodotti | Federico Piasentin',prototipo:'Prototipo assicurativo con Claude | Federico Piasentin',home:'Federico Piasentin, UX Designer & Researcher'};
+    document.title=titles[page];
+    var target=h&&h!=='home'&&h!==page?document.getElementById(h):null;
+    if(target){target.scrollIntoView();}
+    else if(changed||h==='home'||h===page||h===''){window.scrollTo(0,0);if(changed){var m=document.getElementById('contenuto');m.setAttribute('tabindex','-1');m.focus({preventScroll:true});}}
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){if(e.isIntersecting){tocLinks.forEach(function(a){a.toggleAttribute('aria-current',a.getAttribute('href')==='#'+e.target.id);if(a.hasAttribute('aria-current'))a.setAttribute('aria-current','true');});}});
+    },{rootMargin:'-30% 0px -60% 0px'});
+    document.querySelectorAll('.body section[id]').forEach(function(s){io.observe(s);});
+  }
+  window.addEventListener('hashchange',route);
+  route();
+})();
+</script>
+</body>
+</html>
